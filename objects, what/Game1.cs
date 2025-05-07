@@ -36,6 +36,11 @@ namespace objects__what_
                 Color.Wheat
                 );
         }
+
+        public void Move(Vector2 change)
+        {
+            _position += change;
+        }
     }
     public class Game1 : Game
     {
@@ -80,9 +85,13 @@ namespace objects__what_
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            foreach (PlayerClass i in _playerClassList)
+            {
+                i.Move(new Vector2(1, 1));
+            }
+                // TODO: Add your update logic here
 
-            base.Update(gameTime);
+                base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
